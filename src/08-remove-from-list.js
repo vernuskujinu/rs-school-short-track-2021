@@ -11,29 +11,32 @@
  * the output should be [1, 2, 4, 5]
  *
  * Singly - linked lists are already defined with this interface
- * function ListNode(x) {
- *   this.value = x;
- *   this.next = null;
- * }
- */
- function removeKFromList(l, k) {
-  function printList(list) {
-    const arr = [];
-    let tmp = list;
-    while (tmp) {
-      arr.push(tmp.value);
-      tmp = tmp.next;
+*/
+function ListNode(x) {
+  this.value = x;
+  this.next = null;
+}
+
+function convertArrayToList(arr) {
+  return arr.reverse().reduce((acc, cur) => {
+    if (acc) {
+      const node = new ListNode(cur);
+      node.next = acc;
+      return node;
     }
-    return arr;
+
+    return new ListNode(cur);
+  }, null);
+}
+
+function removeKFromList(l, k) {
+  const array = [];
+  for (let node = l; node; node = node.next) {
+    if (node.value !== k) {
+      array.push(node.value);
+    }
   }
-  printList(l);
-  const result = l.filter((item) => {
-    if (item !== k) {
-      return true;
-    }
-    return false;
-  });
-  return result;
+  return convertArrayToList(array);
 }
 
 module.exports = removeKFromList;
