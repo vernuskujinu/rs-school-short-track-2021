@@ -16,7 +16,6 @@
  *   this.next = null;
  * }
  */
-
  function removeKFromList(l, k) {
   function printList(list) {
     const arr = [];
